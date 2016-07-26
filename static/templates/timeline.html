@@ -1,0 +1,55 @@
+<div ng-controller="TimelineController">
+
+    <div ng-if="!isAuthenticated();" style="text-align:center;margin-top:10px;">
+        <div style="magin-bottom:10px;">
+            Click on the button below to login to your Twitter account,
+            post which you can view your latest tweets.
+        </div>
+        <button
+                ng-click="connectToTwitter()"
+                id="connectButton"
+                type="button"
+                class="btn btn-primary">
+            Connect Twitter
+        </button>
+    </div>
+    <div class="row" style="text-align:center;margin-top:10px;">
+        <div class="col-md-6">
+
+            <button ng-click="signOut()"
+                    id="signOut"
+                    type="button"
+                    class="btn btn-link"
+                    ng-if="isAuthenticated();">
+                Sign Out
+            </button>
+        </div>
+        <div class=" col-md-3">
+            <input type="number" ng-model="numberOfTweets" class="form-control" id="searchBox"
+                   placeholder="Enter the number of tweets to view(Default is 10)" ng-show="isAuthenticated();"
+                   ng-change="refreshTimeline()"/>
+        </div>
+    </div>
+
+    <div class="row" style="text-align:center;margin-top:10px;" ng-if="parentObject.rateLimitError">
+        <div class="col-md-12">
+            Rate Limit achieved for twitter api.
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row" ng-repeat="t in tweets" style="text-align:center;margin-top:10px; border:grey 2px solid;">
+
+                <div class="col-md-5">
+                    <img ng-src="{{t.user.profile_image_url}}" class="img-circle">
+                </div>
+                <div class="col-md-7">
+                    <small>{{t.user.name}}</small>
+                    <br> <span ng-bind-html="t.text"></span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

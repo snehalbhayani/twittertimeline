@@ -1,4 +1,5 @@
-var Dc = angular.module('DC', [
+var twitterApp = angular.module('twitterApp', [
     'ui.router',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ServiceModule'
 ]);
