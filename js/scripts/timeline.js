@@ -6,24 +6,7 @@ twitterApp.controller('TimelineController', function($sce, $scope, $q, connectio
     $scope.isAuthenticated = authenticationService.isAuthenticated;
 
     $scope.refreshTimeline = function() {
-        connectionService.getLatestTweets($scope.numberOfTweets).then(function(data) {
-            $scope.tweets = data.map(function(tweet) {
-                tweet.text = $sce.trustAsResourceUrl(tweet.text);
-                return tweet;
-            });
-
-            $scope.parentObject.rateLimitError = false;
-            if(!$scope.$$phase) {
-                $scope.$digest();
-            }
-        }, function(resp) {
-            if(resp.status == 429){
-                $scope.parentObject.rateLimitError = true;
-                if(!$scope.$$phase) {
-                    $scope.$digest();
-                }
-            }
-        });
+        $scope.$broadcast('refreshedTimeline', $scope.parentObject.numberOfTweets);
     };
 
     $scope.connectToTwitter = function() {
@@ -42,7 +25,5 @@ twitterApp.controller('TimelineController', function($sce, $scope, $q, connectio
         $scope.tweets.length = 0;
     };
 
-    if (authenticationService.isAuthenticated()) {
-        $scope.refreshTimeline();
-    }
+
 });

@@ -25,24 +25,29 @@
             </button>
         </div>
         <div class=" col-md-3">
-            <input type="number" ng-model="numberOfTweets" class="form-control" id="searchBox"
+            <input type="number" ng-model="parentObject.numberOfTweets" class="form-control" id="searchBox"
                    placeholder="Enter the number of tweets to view(Default is 10)" ng-show="isAuthenticated();"
                    ng-change="refreshTimeline()"/>
         </div>
     </div>
 
-    <div class="row" style="text-align:center;margin-top:10px;" ng-show="parentObject.rateLimitError && isAuthenticated()">
-        <div class="col-md-12">
-            Rate Limit achieved for twitter api.
-        </div>
-    </div>
+    <div class="row"
+         style="width:80%;margin:auto;"
+          twitter-timeline
+         number-of-tweets="{{parentObject.numberOfTweets}}">
 
-    <div class="row"  style="width:80%;margin:auto;" ng-if="isAuthenticated();">
-        <div class="col-md-12">
-            <div class="row" ng-repeat="t in tweets" style="text-align:center;margin-top:10px; border:grey 2px solid;">
+        <div class="row rate-limit-error" style="text-align:center;margin-top:10px;" ng-if="isAuthenticated();"
+            <div class="col-md-12">
+                Rate Limit achieved for twitter api.
+            </div>
+        </div>
+
+        <div class="col-md-12" ng-if="isAuthenticated();">
+            <div class="row"
+                 ng-repeat="t in tweets" style="text-align:center;margin-top:10px; border:grey 2px solid;">
 
                 <div class="col-md-5">
-                    <img ng-src="{{t.user.profile_image_url}}" class="img-circle">
+                    <img ng-src="{{t.user.profile_image_url}}">
                 </div>
                 <div class="col-md-7">
                     <span>
