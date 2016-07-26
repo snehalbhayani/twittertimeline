@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 
 app.use(express.static('static/templates'));
+app.use(express.static('static/css'));
 app.use(express.static('js'));
 app.use(express.static('bower_components'));
 

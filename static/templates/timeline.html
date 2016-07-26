@@ -31,7 +31,7 @@
         </div>
     </div>
 
-    <div class="row" style="text-align:center;margin-top:10px;" ng-if="parentObject.rateLimitError">
+    <div class="row" style="text-align:center;margin-top:10px;" ng-if="parentObject.rateLimitError && isAuthenticated()">
         <div class="col-md-12">
             Rate Limit achieved for twitter api.
         </div>
