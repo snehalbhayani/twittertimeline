@@ -37,16 +37,23 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-12" style="width:80%;margin:auto;">
+    <div class="row"  style="width:80%;margin:auto;">
+        <div class="col-md-12">
             <div class="row" ng-repeat="t in tweets" style="text-align:center;margin-top:10px; border:grey 2px solid;">
 
                 <div class="col-md-5">
                     <img ng-src="{{t.user.profile_image_url}}" class="img-circle">
                 </div>
                 <div class="col-md-7">
-                    <small>{{t.user.name}}</small>
-                    <br> <span ng-bind-html="t.text"></span>
+                    <span>
+                        <b>
+                            {{t.user.name}}
+                        </b>
+                    </span>
+                    <br>
+                    <span>
+                        {{t.text}}
+                    </span>
                 </div>
 
             </div>

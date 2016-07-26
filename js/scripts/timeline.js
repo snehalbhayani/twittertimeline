@@ -1,5 +1,5 @@
 "use strict";
-twitterApp.controller('TimelineController', function($scope, $q, connectionService, $rootScope, authenticationService) {
+twitterApp.controller('TimelineController', function($sce, $scope, $q, connectionService, $rootScope, authenticationService) {
     $scope.tweets = [];
     $scope.parentObject = {};
     connectionService.initialize();
@@ -7,7 +7,11 @@ twitterApp.controller('TimelineController', function($scope, $q, connectionServi
 
     $scope.refreshTimeline = function() {
         connectionService.getLatestTweets($scope.numberOfTweets).then(function(data) {
-            $scope.tweets = data;
+            $scope.tweets = data.map(function(tweet) {
+                tweet.text = $sce.trustAsResourceUrl(tweet.text);
+                return tweet;
+            });
+
             $scope.parentObject.rateLimitError = false;
             if(!$scope.$$phase) {
                 $scope.$digest();
