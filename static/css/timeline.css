@@ -3,3 +3,12 @@ html {
     height: 100%;
     overflow-x: hidden;
 }
+
+.form-control {
+    width:50%;
+}
+.number-of-tweets input,
+.number-of-tweets span{
+    display: inline-block;
+    vertical-align: middle;
+}

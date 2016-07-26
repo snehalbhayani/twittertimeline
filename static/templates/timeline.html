@@ -24,9 +24,13 @@
                 Sign Out
             </button>
         </div>
-        <div class=" col-md-3">
+        <div class=" col-md-6 number-of-tweets" >
+            <span>
+                Number of Tweets:
+            </span>
+
             <input type="number" ng-model="parentObject.numberOfTweets" class="form-control" id="searchBox"
-                   placeholder="Enter the number of tweets to view(Default is 10)" ng-show="isAuthenticated();"
+                   placeholder="10" ng-show="isAuthenticated();"
                    ng-change="refreshTimeline()"/>
         </div>
     </div>
@@ -36,7 +40,7 @@
           twitter-timeline
          number-of-tweets="{{parentObject.numberOfTweets}}">
 
-        <div class="row rate-limit-error" style="text-align:center;margin-top:10px;" ng-if="isAuthenticated();"
+        <div class="row rate-limit-error" style="text-align:center;margin-top:10px;" ng-if="isAuthenticated();">
             <div class="col-md-12">
                 Rate Limit achieved for twitter api.
             </div>
