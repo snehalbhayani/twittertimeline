@@ -31,14 +31,14 @@
         </div>
     </div>
 
-    <div class="row" style="text-align:center;margin-top:10px;" ng-if="parentObject.rateLimitError && isAuthenticated()">
+    <div class="row" style="text-align:center;margin-top:10px;" ng-show="parentObject.rateLimitError && isAuthenticated()">
         <div class="col-md-12">
             Rate Limit achieved for twitter api.
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12" style="width:80%;margin:auto;">
             <div class="row" ng-repeat="t in tweets" style="text-align:center;margin-top:10px; border:grey 2px solid;">
 
                 <div class="col-md-5">

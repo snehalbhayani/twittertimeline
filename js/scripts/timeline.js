@@ -9,13 +9,13 @@ twitterApp.controller('TimelineController', function($scope, $q, connectionServi
         connectionService.getLatestTweets($scope.numberOfTweets).then(function(data) {
             $scope.tweets = data;
             $scope.parentObject.rateLimitError = false;
-            if(!!$scope.$$phase) {
+            if(!$scope.$$phase) {
                 $scope.$digest();
             }
         }, function(resp) {
             if(resp.status == 429){
                 $scope.parentObject.rateLimitError = true;
-                if(!!$scope.$$phase) {
+                if(!$scope.$$phase) {
                     $scope.$digest();
                 }
             }
@@ -25,7 +25,10 @@ twitterApp.controller('TimelineController', function($scope, $q, connectionServi
     $scope.connectToTwitter = function() {
          connectionService.connectToTwitter(function() {
              if (authenticationService.isAuthenticated()) {
-                $scope.refreshTimeline();
+                 $scope.refreshTimeline();
+                 if(!$scope.$$phase) {
+                     $scope.$digest();
+                 }
             }
         });
     };

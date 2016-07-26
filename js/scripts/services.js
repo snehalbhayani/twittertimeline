@@ -54,8 +54,8 @@ serviceModule.factory('connectionService', function($q, $rootScope, authenticati
     connection.getLatestTweets = function(countOfTweets) {
         var url = '/1.1/statuses/home_timeline.json',
             count = !countOfTweets ? 10 : countOfTweets;
-        if (countOfTweets) {
-            url += '?count=' + countOfTweets;
+        if (count) {
+            url += '?count=' + count;
         }
         var promise = authorizationResult.get(url);
         return promise;
