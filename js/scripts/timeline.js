@@ -6,7 +6,10 @@ twitterApp.controller('TimelineController', function($sce, $scope, $q, connectio
     $scope.isAuthenticated = authenticationService.isAuthenticated;
 
     $scope.refreshTimeline = function() {
-        $scope.$broadcast('refreshedTimeline', $scope.parentObject.numberOfTweets);
+        $scope.$broadcast('showSpinner');
+        $scope.$broadcast('refreshedTimeline', $scope.parentObject.numberOfTweets, function() {
+            $scope.$broadcast('stopSpinner');
+        });
     };
 
     $scope.connectToTwitter = function() {

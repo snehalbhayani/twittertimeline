@@ -36,10 +36,11 @@
     </div>
 
     <div class="row"
-         style="width:80%;margin:auto;"
+         style="width:80%;margin:auto;margin-top:100px;text-align:center;"
           twitter-timeline
          number-of-tweets="{{parentObject.numberOfTweets}}">
 
+        <i class="fa fa-circle-o-notch fa-spin" style="font-size:48px;text-align:center;" a-spinner></i>
         <div class="row rate-limit-error" style="text-align:center;margin-top:10px;" ng-if="isAuthenticated();">
             <div class="col-md-12">
                 Rate Limit achieved for twitter api.
